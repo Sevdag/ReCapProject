@@ -9,7 +9,6 @@ namespace Bussiness.Abstract
     {
         List<Brand> GetAll();
         List<Brand> GetCarsByBrandId(int id);
-        List<Brand> GetCarsByColorId(int id);
         void Add(Brand brand);
         void Delete(Brand brand);
         void Update(Brand brand);
