@@ -9,21 +9,21 @@ namespace Bussiness.Concrete
 {
     public class ColorManager : IColorService
     {
-        IColorDal _icolorDal;
+        IColorDal _colorDal;
 
-        public ColorManager(IColorDal icolorDal)
+        public ColorManager(IColorDal colorDal)
         {
-            _icolorDal = icolorDal;
+            _colorDal = colorDal;
         }
 
         public void Add(Color color)
         {
-            throw new NotImplementedException();
+            _colorDal.Add(color);
         }
 
         public void Delete(Color color)
         {
-            throw new NotImplementedException();
+            _colorDal.Delete(color);
         }
 
         public List<Color> GetAll()
@@ -31,19 +31,24 @@ namespace Bussiness.Concrete
             throw new NotImplementedException();
         }
 
+        public Color GetById(int id)
+        {
+            return _colorDal.Get(p => p.ColorId == id);
+        }
+
         public List<Color> GetCarsByBrandId(int id)
         {
-            throw new NotImplementedException();
+            return _colorDal.GetAll(p => p.ColorId == id);
         }
 
         public List<Color> GetCarsByColorId(int id)
         {
-            throw new NotImplementedException();
+            return _colorDal.GetAll(p => p.ColorId == id);
         }
 
         public void Update(Color color)
         {
-            throw new NotImplementedException();
+            _colorDal.Update(color);
         }
     }
 }
