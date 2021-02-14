@@ -17,6 +17,23 @@ namespace Bussiness.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car car)
+        {
+            if (car.CarName.Length > 2 && car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Başarıyla eklendi.");
+            }
+            else
+            {
+                Console.WriteLine("Lütfen arabanın ismini 2 karakterden uzun yazınız.");
+            }
+        }
+        public void Delete(Car car)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -31,5 +48,11 @@ namespace Bussiness.Concrete
         {
             return _carDal.GetAll(p => p.ColorId == id);
         }
+
+        public void Update(Car car)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+
