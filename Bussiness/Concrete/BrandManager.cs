@@ -1,4 +1,6 @@
 ﻿using Bussiness.Abstract;
+using Bussiness.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,34 +18,40 @@ namespace Bussiness.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
-            _brandDal.Add(brand);
+            if (brand.BrandName.Length > 2)
+            {
+                _brandDal.Add(brand);
+                return new SuccessResult(Messages.BrandAdded);
+            }
+            return new ErrorResult(Messages.BrandAdded);
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
-        public Brand GetById(int id)
+        public IDataResult<Brand> GetById(int id)
         {
-            return _brandDal.Get(p => p.BrandId == id);
+            return new SuccessDataResult<Brand>(_brandDal.Get(c => c.BrandId == id));
         }
 
-        public List<Brand> GetCarsByBrandId(int id)
+        public IResult Update(Brand brand)
         {
-            return _brandDal.GetAll(p => p.BrandId == id);
-        }
-
-        public void Update(Brand brand)
-        {
-            _brandDal.Update(brand);
+            if (brand.BrandName.Length > 2)
+            {
+                _brandDal.Update(brand);
+                return new SuccessResult(Messages.BrandUpdated);
+            }
+            return new ErrorResult(Messages.BrandNameInvalid);
         }
     }
 }
