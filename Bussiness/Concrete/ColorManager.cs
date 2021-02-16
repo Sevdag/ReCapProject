@@ -1,4 +1,6 @@
 ﻿using Bussiness.Abstract;
+using Bussiness.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,39 +18,43 @@ namespace Bussiness.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
             _colorDal.Add(color);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
+        {
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
+        }
+
+        public IDataResult<List<Color>> GetCarsByBrandId(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Color GetById(int id)
+        public IDataResult<List<Color>> GetCarsByColorId(int id)
         {
-            return _colorDal.Get(p => p.ColorId == id);
+            throw new NotImplementedException();
         }
 
-        public List<Color> GetCarsByBrandId(int id)
+        public IResult Update(Color entity)
         {
-            return _colorDal.GetAll(p => p.ColorId == id);
+            _colorDal.Update(entity);
+            return new SuccessResult(Messages.ColorUpdated);
+
         }
 
-        public List<Color> GetCarsByColorId(int id)
+        public IDataResult<Color> GetById(int id)
         {
-            return _colorDal.GetAll(p => p.ColorId == id);
-        }
-
-        public void Update(Color color)
-        {
-            _colorDal.Update(color);
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id));
         }
     }
 }
