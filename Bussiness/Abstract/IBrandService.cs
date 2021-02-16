@@ -7,11 +7,12 @@ namespace Bussiness.Abstract
 {
     public interface IBrandService
     {
-        List<Brand> GetAll();
-        List<Brand> GetCarsByBrandId(int id);
-        void Add(Brand brand);
-        void Delete(Brand brand);
-        void Update(Brand brand);
-        Brand GetById(int id);
+        IDataResult<List<Brand>>GetAll();
+        IDataResult<List<Brand>>GetCarsByBrandId(int id);
+        IResult Add(Brand brand);
+        IResult Delete(Brand brand);
+        IResult Update(Brand brand);
+        IResult< Brand> GetById(int id);
+        IDataResult<List<CarDetailDto>> GetCarDetails();
     }
 }
