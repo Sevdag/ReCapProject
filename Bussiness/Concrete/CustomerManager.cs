@@ -38,16 +38,6 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
         }
 
-        public IDataResult<List<Customer>> GetCarsByBrandId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDataResult<List<Customer>> GetCarsByColorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IResult Update(Customer customer)
         {
            return new SuccessResult(Messages.CustomerUpdated);

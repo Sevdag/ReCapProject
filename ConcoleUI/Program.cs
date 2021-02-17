@@ -17,11 +17,11 @@ namespace ConsoleUI
 
         private static void BrandTest()
         {
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
-            {
-                Console.WriteLine(brand.BrandName);
-            }
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //foreach (var brand in brandManager.GetAll())
+            //{
+            //    Console.WriteLine(brand.BrandName);
+            //}
         }
 
         private static void CarTest()

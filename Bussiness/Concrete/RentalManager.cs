@@ -45,16 +45,6 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(p => p.Id == id));
         }
 
-        public IDataResult<List<Rental>> GetCarsByBrandId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDataResult<List<Rental>> GetCarsByColorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IDataResult<List<RentDetailDto>> GetCarDetails(Expression<Func<Rental, bool>> filter = null)
         {
             return new SuccessDataResult<List<RentDetailDto>>(_rentalDal.GetCarDetails(filter), Messages.InvalidRent);
@@ -62,7 +52,8 @@ namespace Bussiness.Concrete
 
         public IResult Update(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Update(rental);
+            return new SuccessResult(Messages.RentalUpdated);
         }
     }
 }
