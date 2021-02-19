@@ -24,6 +24,10 @@ namespace Bussiness.Constants
         public static string ColorDeleted = "Ürünün rengi başarıyla silindi.";
         public static string ColorUpdated = "Ürünün rengi başarıyla güncellendi.";
 
+        public static string UserAdded = "Kullanıcı başarıyla eklendi.";
+        public static string UserDeleted = "Kullanıcı başarıyla silindi.";
+        public static string UserUpdated = "Kullanıcı başarıyla güncellendi.";
+
         public static string CustomerAdded = "Müşteri eklendi";
         public static string CustomerNameInvalid = "Müşteri ismi geçersiz";
         public static string CustomerListed = "Müşteriler listelendi";
@@ -35,5 +39,6 @@ namespace Bussiness.Constants
         public static string RentalListed = "Arabalar listelendi";
         public static string RentalDeleted = "Kiraladığınız araba başarıyla silindi.";
         public static string RentalUpdated = "Kiraladığınız araba başarıyla güncellendi.";
+        public static string RentalReturned = "Kiraladığınız araç teslim edildi.";
     }
 }

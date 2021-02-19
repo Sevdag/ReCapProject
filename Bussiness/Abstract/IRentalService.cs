@@ -15,6 +15,6 @@ namespace Bussiness.Abstract
         IResult Add(Rental rental);
         IResult Delete(Rental rental);
         IResult Update(Rental rental);
-        IDataResult<List<RentDetailDto>> GetCarDetails(Expression<Func<Rental, bool>> filter = null);
+        IDataResult<List<RentDetailDto>> GetRentalDetails(Expression<Func<Rental, bool>> filter = null);
     }
 }

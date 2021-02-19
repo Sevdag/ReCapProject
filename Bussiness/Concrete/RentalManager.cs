@@ -45,9 +45,9 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(p => p.Id == id));
         }
 
-        public IDataResult<List<RentDetailDto>> GetCarDetails(Expression<Func<Rental, bool>> filter = null)
+        public IDataResult<List<RentDetailDto>> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
-            return new SuccessDataResult<List<RentDetailDto>>(_rentalDal.GetCarDetails(filter), Messages.InvalidRent);
+            return new SuccessDataResult<List<RentDetailDto>>(_rentalDal.GetCarDetails(filter), Messages.RentalReturned);
         }
 
         public IResult Update(Rental rental)
