@@ -1,10 +1,12 @@
 ﻿using Bussiness.Abstract;
 using Bussiness.Constants;
+using Bussiness.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -23,16 +25,18 @@ namespace Bussiness.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.DailyPrice > 0)
+            //validation
+
+            var context = new ValidationContext<Car>(car);
+            CarValidator carValidator = new CarValidator();
+            var result = carValidator.Validate(context);
+            if (!result.IsValid)
             {
+                throw new ValidationException(result.Errors);
+            }
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
-              
-            }
-            else
-            {
-                return new ErrorResult(Messages.CarNameInvalid);
-            }
+           
          
         }
         public IResult Delete(Car car)
