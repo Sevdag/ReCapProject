@@ -1,6 +1,8 @@
 ﻿using Bussiness.Abstract;
 using Bussiness.Constants;
 using Bussiness.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -21,19 +23,13 @@ namespace Bussiness.Concrete
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
-        }
+        } 
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             //validation
 
-            var context = new ValidationContext<Car>(car);
-            CarValidator carValidator = new CarValidator();
-            var result = carValidator.Validate(context);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
            
