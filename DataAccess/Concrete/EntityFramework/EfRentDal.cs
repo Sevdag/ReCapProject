@@ -29,7 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  RentalId = r.Id,
                                  CarName = b.BrandName,
-                                 CustomerName = cs.CompanyName,
+                                 CustomerName = cs.CustomerName,
                                  UserName = u.FirstName + " " + u.LastName,
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate
