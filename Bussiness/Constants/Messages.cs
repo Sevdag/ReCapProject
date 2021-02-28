@@ -41,7 +41,8 @@ namespace Bussiness.Constants
         public static string RentalUpdated = "Kiraladığınız araba başarıyla güncellendi.";
         public static string RentalReturned = "Kiraladığınız araç teslim edildi.";
 
-        public static string ImagesAdded = "resim eklendi";
-        public static string EndofImageLimit = "Resim limitine erişildi!";
+        public static string ImageAdded = "resim eklendi";
+        public static string CarImageOutOfLimit ="Resim limitine erişildi!";
+        internal static string ImageDeleted="Resim silindi";
     }
 }

@@ -17,19 +17,26 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (RecapContext context = new RecapContext())
             {
-                var result = from c in context.Cars
-                             join b in context.Brands on c.BrandId equals b.BrandId
-                             join clr in context.Colors on c.ColorId equals clr.ColorId
+                var result = from c in filter == null ? context.Cars : context.Cars.Where(filter)
+                             join co in context.Colors
+                             on c.ColorId equals co.ColorId
+                             join b in context.Brands
+                             on c.BrandId equals b.BrandId
+                             join ci in context.CarImages
+                             on c.Id equals ci.CarId
                              select new CarDetailDto
                              {
                                  Id = c.Id,
                                  BrandName = b.BrandName,
-                                 ColorName = clr.ColorName,
-                                 DailyPrice = c.DailyPrice
-                               
+                                 ColorName = co.ColorName,
+                                 DailyPrice = c.DailyPrice,
+                                 CarName = c.CarName,
+                                 ModelYear = c.ModelYear,
+                                 Date = ci.Date,
+                                 ImagePath = ci.ImagePath
                              };
-
                 return result.ToList();
+             
             }
         }
     }
