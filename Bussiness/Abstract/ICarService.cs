@@ -4,6 +4,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Bussiness.Abstract
@@ -18,7 +19,7 @@ namespace Bussiness.Abstract
         IResult Delete(Car car);
         IResult Update(Car car);
         IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null);
-
+        IResult AddTransactionalTest(Car car);
 
     }
 }
