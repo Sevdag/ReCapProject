@@ -4,11 +4,13 @@ using Bussiness.Abstract;
 using Bussiness.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Bussiness.DependencyResolvers.Autofac
 {
@@ -36,6 +38,11 @@ namespace Bussiness.DependencyResolvers.Autofac
 
             builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
             builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            builder.RegisterType<IHttpContextAccessor>().As<IHttpContextAccessor>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

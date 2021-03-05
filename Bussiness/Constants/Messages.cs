@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Bussiness.Constants
@@ -24,10 +26,6 @@ namespace Bussiness.Constants
         public static string ColorDeleted = "Ürünün rengi başarıyla silindi.";
         public static string ColorUpdated = "Ürünün rengi başarıyla güncellendi.";
 
-        public static string UserAdded = "Kullanıcı başarıyla eklendi.";
-        public static string UserDeleted = "Kullanıcı başarıyla silindi.";
-        public static string UserUpdated = "Kullanıcı başarıyla güncellendi.";
-
         public static string CustomerAdded = "Müşteri eklendi";
         public static string CustomerNameInvalid = "Müşteri ismi geçersiz";
         public static string CustomerListed = "Müşteriler listelendi";
@@ -43,6 +41,16 @@ namespace Bussiness.Constants
 
         public static string ImageAdded = "resim eklendi";
         public static string CarImageOutOfLimit ="Resim limitine erişildi!";
-        internal static string ImageDeleted="Resim silindi";
+        public static string ImageDeleted="Resim silindi";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+
+        public static string UserRegistered = "Kullanıcı eklendi.";
+        public static string UserDeleted = "Kullanıcı başarıyla silindi.";
+        public static string UserUpdated = "Kullanıcı başarıyla güncellendi.";
+        public static string UserNotFound= "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre Hatalı";
+        public static string SuccessfulLogin = "Başarılı giriş";
+        public static string UserAlreadyExists = "Kullanıcı mevcut";
+        public static string AccessTokenCreated = "Token oluşturuldu";
     }
 }

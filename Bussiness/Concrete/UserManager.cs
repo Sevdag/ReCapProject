@@ -2,6 +2,7 @@
 using Bussiness.Constants;
 using Bussiness.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -25,7 +26,14 @@ namespace Bussiness.Concrete
             _userDal.Add(user);
             return new SuccessResult(Messages.RentalAdded);
         }
-
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
+        }
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
