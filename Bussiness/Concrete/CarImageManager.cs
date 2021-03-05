@@ -26,12 +26,7 @@ namespace Bussiness.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImages carImage)
         {
-            //var result = _carDal.GetAll(p => p.Id == car.Id).Count;
-            //if (result >=10)
-            //{
-            //    return new ErrorResult(Messages.CarImageOutOfLimit);
-            //}
-            IResult result = BusinessRules.Run(CheckIfImageLimit(carImage.CarId));
+            var result = BusinessRules.Run(CheckIfImageLimit(carImage));
             if (result !=null)
             {
                 return result;
@@ -44,7 +39,7 @@ namespace Bussiness.Concrete
 
         public IResult Delete(CarImages carImage)
         {
-            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carImageDal.Get(I => I.Id == carImage.Id).ImagePath;
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carImageDal.Get(p => p.Id == carImage.Id).ImagePath;
 
             var result = BusinessRules.Run(FileHelper.Delete(oldpath));
 
@@ -69,7 +64,7 @@ namespace Bussiness.Concrete
 
         public IDataResult<List<CarImages>> GetImagesByCarId(int id)
         {
-            return new SuccessDataResult<List<CarImages>>(_carImageDal.GetAll(x => x.CarId == id));
+            return new SuccessDataResult<List<CarImages>>(_carImageDal.GetAll(c => c.CarId == id));
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
@@ -81,10 +76,9 @@ namespace Bussiness.Concrete
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }
-        private IResult CheckIfImageLimit(int carId)
+        private IResult CheckIfImageLimit(CarImages carImage)
         {
-            var carImage = _carImageDal.GetAll(p => p.CarId == carId).Count;
-            if (carImage >= 5)
+            if (_carImageDal.GetAll(c => c.CarId == carImage.CarId).Count >= 5)
             {
                 return new ErrorResult(Messages.CarImageOutOfLimit);
             }
